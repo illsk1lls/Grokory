@@ -49,8 +49,20 @@ $recognizer.LoadGrammar($grammar)
 Write-Log "Dictation grammar loaded."
 
 Write-Log "Setting audio input..."
-$recognizer.SetInputToDefaultAudioDevice()
-Write-Log "Audio input set."
+try {
+    $recognizer.SetInputToDefaultAudioDevice()
+    Write-Log "Audio input set."
+}
+catch {
+    Write-Log "No microphone detected: $_"
+    Write-Host "Error: No microphone detected. Please connect a microphone and try again."
+    Write-Host "Press any key to exit..."
+    $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+    if ($recognizer) {
+        $recognizer.Dispose()
+    }
+    exit
+}
 
 Write-Log "Setting initial silence timeout to 10 seconds..."
 $recognizer.InitialSilenceTimeout = [TimeSpan]::FromSeconds(10)
