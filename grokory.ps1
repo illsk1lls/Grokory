@@ -23,7 +23,7 @@ function Write-Log($message, [string]$ConsoleMessage) {
 }
 
 # API setup - Should be set as environment variable GrokAPIKey
-#$apiKey = $env:GrokAPIKey
+$apiKey = $env:GrokAPIKey
 $url = "https://api.x.ai/v1/chat/completions"
 $Grokory = New-Object System.Speech.Synthesis.SpeechSynthesizer
 $headers = @{
