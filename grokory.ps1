@@ -58,7 +58,7 @@ $recognizer.InitialSilenceTimeout = [TimeSpan]::FromSeconds(10)
 Write-Log "Initial recognizer state: $($recognizer.RecognizerState)"
 
 # Display startup message in console
-Write-Host "Starting speech recognition loop. Press Left Ctrl to speak to Grok, Esc to quit..."
+Write-Host "Starting speech recognition loop. Press Left Ctrl to speak to Grok, release for response. Esc to quit..."
 
 Write-Log "Speech recognition loop started."
 
